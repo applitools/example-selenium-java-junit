@@ -1,7 +1,6 @@
 package com.applitools.quickstarts;
 
 import com.applitools.eyes.BatchInfo;
-import com.applitools.eyes.TestResults;
 import com.applitools.eyes.config.SeleniumConfiguration;
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
@@ -42,14 +41,15 @@ public class VisualGridDemo {
 
 		// Create SeleniumConfiguration.
 		SeleniumConfiguration sconf = new SeleniumConfiguration();
-		
-		//Set the AUT name
+
+		// Set the AUT name
 		sconf.setAppName("Bank App");
 
-		//Set a test name
+		// Set a test name
 		sconf.setTestName("Smoke Test via Visual Grid");
-		
-		//Set a batch name so all the different browser and mobile combinations are part of the same batch
+
+		// Set a batch name so all the different browser and mobile combinations are
+		// part of the same batch
 		sconf.setBatch(new BatchInfo("VIP Browser combo batch"));
 
 		// Add Chrome browsers with different Viewports
@@ -91,6 +91,9 @@ public class VisualGridDemo {
 				"Please wait... we are now: \n1. Uploading resources, \n2. Rendering in Visual Grid, and \n3. Using Applitools AI to validate the checkpoints. \nIt'll take about a minute...");
 		TestResultSummary allTestResults = runner.getAllTestResults();
 		System.out.println(allTestResults);
+
+		// End main test
+		System.exit(0);
 
 	}
 }
