@@ -14,9 +14,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class VisualGridDemo {
-	// Use VisualGrid by default because it's faster and can render numerous tests
-	// in under a minute.
-	public static boolean useVisualGrid = false;
 
 	public static void main(String[] args) {
 		VisualGridDemo program = new VisualGridDemo();
@@ -29,6 +26,11 @@ public class VisualGridDemo {
 
 		// Navigate to the URL we want to test
 		webDriver.get("https://demo.applitools.com");
+		
+		
+		//To see visual bugs, change the above URL to:
+		//  https://demo.applitools.com/index_v2.html and run the test again
+		
 
 		// Create a runner with concurrency of 10
 		VisualGridRunner runner = new VisualGridRunner(10);
@@ -74,21 +76,20 @@ public class VisualGridDemo {
 		// Call Open on eyes to initialize a test session
 		eyes.open(webDriver);
 
-		// Add 2 checks
-		eyes.check(Target.window().withName("Step 1 - Viewport"));
-		eyes.check(Target.window().fully().withName("Step 1 - Full Page"));
+		// Check the Login page
+		eyes.check(Target.window().fully().withName("Step 1 - Login page"));
 
+		//Click on the Login button to go to the App's main page
 		webDriver.findElement(By.id("log-in")).click();
 
-		// Add 2 checks
-		eyes.check(Target.window().withName("Step 2 - Viewport"));
-		eyes.check(Target.window().fully().withName("Step 2 - Full Page"));
+		// Check the App page
+		eyes.check(Target.window().fully().withName("Step 2 - App Page"));
 
 		// Close the browser
 		webDriver.quit();
 
 		System.out.println(
-				"Please wait... we are now: \n1. Uploading resources, \n2. Rendering in Visual Grid, and \n3. Using Applitools AI to validate the checkpoints. \nIt'll take about a minute...");
+				"Please wait... we are now: \n1. Uploading resources, \n2. Rendering in Visual Grid, and \n3. Using Applitools AI to validate the checkpoints. \nIt'll take about 30 secs to a minute...");
 		TestResultSummary allTestResults = runner.getAllTestResults();
 		System.out.println(allTestResults);
 
