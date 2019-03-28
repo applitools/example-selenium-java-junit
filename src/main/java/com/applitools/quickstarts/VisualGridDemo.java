@@ -59,8 +59,8 @@ public class VisualGridDemo {
 		sconf.addBrowser(700, 500, SeleniumConfiguration.BrowserType.CHROME);
 
 		// Add Firefox browser with different Viewports
-		sconf.addBrowser(1200, 800, SeleniumConfiguration.BrowserType.CHROME);
-		sconf.addBrowser(1600, 1200, SeleniumConfiguration.BrowserType.CHROME);
+		sconf.addBrowser(1200, 800, SeleniumConfiguration.BrowserType.FIREFOX);
+		sconf.addBrowser(1600, 1200, SeleniumConfiguration.BrowserType.FIREFOX);
 
 		// Add iPhone 4 device emulation
 		EmulationInfo iphone4 = new EmulationInfo(EmulationInfo.DeviceName.IPHONE4, ScreenOrientation.PORTRAIT);
