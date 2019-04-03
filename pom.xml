@@ -20,7 +20,7 @@
 		<dependency>
 		 <groupId>com.applitools</groupId>
 		 <artifactId>eyes-selenium-java3</artifactId>
-		 <version>3.149.1-beta</version>
+		 <version>3.149.3-beta</version>
 		</dependency>
 		<!-- Required to run "mvn package" which runs test -->
 		<dependency>
