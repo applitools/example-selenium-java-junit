@@ -1,15 +1,19 @@
 package com.applitools.quickstarts;
 
 
+import com.applitools.eyes.selenium.BrowserType;
 import com.applitools.eyes.selenium.Configuration;
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
-import com.applitools.eyes.visualgridclient.model.ChromeEmulationInfo;
-import com.applitools.eyes.visualgridclient.model.TestResultSummary;
-import com.applitools.eyes.visualgridclient.services.VisualGridRunner;
+import com.applitools.eyes.visualgrid.model.DeviceName;
+import com.applitools.eyes.visualgrid.model.TestResultSummary;
+import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+
+
 import com.applitools.eyes.BatchInfo;
 
 public class VisualGridDemo {
@@ -25,6 +29,11 @@ public class VisualGridDemo {
 
 		// Set API key
 		eyes.setApiKey("APPLITOOLS_API_KEY");
+		
+		//If dedicated or on-prem cloud, uncomment and enter the cloud url
+		//Default: https://eyes.applitools.com
+		//eyes.setServerUrl("https://testeyes.applitools.com"); 
+
 
 		// Create SeleniumConfiguration.
 		Configuration sconf = new Configuration();
@@ -40,15 +49,15 @@ public class VisualGridDemo {
 		sconf.setBatch(new BatchInfo("VIP Browser combo batch"));
 
 		// Add Chrome browsers with different Viewports
-		sconf.addBrowser(800, 600, Configuration.BrowserType.CHROME);
-		sconf.addBrowser(700, 500, Configuration.BrowserType.CHROME);
+		sconf.addBrowser(800, 600, BrowserType.CHROME);
+		sconf.addBrowser(700, 500, BrowserType.CHROME);
 
 		// Add Firefox browser with different Viewports
-		sconf.addBrowser(1200, 800, Configuration.BrowserType.FIREFOX);
-		sconf.addBrowser(1600, 1200, Configuration.BrowserType.FIREFOX);
+		sconf.addBrowser(1200, 800, BrowserType.FIREFOX);
+		sconf.addBrowser(1600, 1200, BrowserType.FIREFOX);
 
 		// Add iPhone 4 device emulation
-		sconf.addDeviceEmulation(ChromeEmulationInfo.DeviceName.iPhone_4);
+		sconf.addDeviceEmulation(DeviceName.iPhone_4);
 
 		// Set the configuration object to eyes
 		eyes.setConfiguration(sconf);
