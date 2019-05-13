@@ -101,8 +101,8 @@ public class VisualGridDemo {
 		System.out.println(
 				"Please wait... we are now: \n1. Uploading resources, \n2. Rendering in Visual Grid, and \n3. Using Applitools A.I. to validate the checkpoints. \nIt'll take about 30 secs to a minute...");
 
-		// Close eyes and collect results
-		eyes.close();
+		// Close eyes asynchronously
+		eyes.closeAsync();
 		TestResultSummary allTestResults = runner.getAllTestResults();
 		System.out.println(allTestResults);
 
