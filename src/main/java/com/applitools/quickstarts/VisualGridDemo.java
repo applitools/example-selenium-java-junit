@@ -1,12 +1,10 @@
 package com.applitools.quickstarts;
 
-
 import com.applitools.eyes.selenium.BrowserType;
 import com.applitools.eyes.selenium.Configuration;
 import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.eyes.visualgrid.model.DeviceName;
-import com.applitools.eyes.visualgrid.model.TestResultSummary;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import com.applitools.eyes.BatchInfo;
+import com.applitools.eyes.TestResultsSummary;
 
 public class VisualGridDemo {
 
@@ -28,7 +27,7 @@ public class VisualGridDemo {
 		Eyes eyes = new Eyes(runner);
 
 		// Set API key
-		eyes.setApiKey("APPLITOOLS_API_KEY");
+		eyes.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
 		
 		//If dedicated or on-prem cloud, uncomment and enter the cloud url
 		//Default: https://eyes.applitools.com
@@ -102,8 +101,8 @@ public class VisualGridDemo {
 				"Please wait... we are now: \n1. Uploading resources, \n2. Rendering in Visual Grid, and \n3. Using Applitools A.I. to validate the checkpoints. \nIt'll take about 30 secs to a minute...");
 
 		// Close eyes asynchronously
-		eyes.closeAsync();
-		TestResultSummary allTestResults = runner.getAllTestResults();
+		eyes.close();
+		TestResultsSummary allTestResults = runner.getAllTestResults();
 		System.out.println(allTestResults);
 
 	}
