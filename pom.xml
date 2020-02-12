@@ -9,18 +9,12 @@
 	<name>Java-tutorial</name>
 	<url>http://maven.apache.org</url>
 
-	<!-- Use JDK 10 -->
-	<properties>
-		<maven.compiler.source>10</maven.compiler.source>
-		<maven.compiler.target>10</maven.compiler.target>
-	</properties>
-
 	<dependencies>
 		<!-- This is the Applitools Selenium Java SDK -->
 		<dependency>
 		 <groupId>com.applitools</groupId>
 		 <artifactId>eyes-selenium-java3</artifactId>
-		 <version>3.151.2</version>
+		 <version>3.160.0</version>
 		</dependency>
 		<!-- Required to run "mvn package" which runs test -->
 		<dependency>
@@ -28,13 +22,6 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-		</dependency>
-
-		<!-- Required for Java 10 -->
-		<dependency>
-			<groupId>javax.activation</groupId>
-			<artifactId>activation</artifactId>
-			<version>1.1.1</version>
 		</dependency>
 
 	</dependencies>
