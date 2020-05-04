@@ -14,15 +14,7 @@
 		<dependency>
 		 <groupId>com.applitools</groupId>
 		 <artifactId>eyes-selenium-java3</artifactId>
-		 <version>3.160.0</version>
+		 <version>RELEASE</version>
 		</dependency>
-		<!-- Required to run "mvn package" which runs test -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
 </project>
