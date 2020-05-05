@@ -21,46 +21,42 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * Unit test for simple App.
  */
 public class AppTest {
-	public WebDriver webDriver;
-	public VisualGridRunner runner;
-	public Configuration config;
-	public Eyes eyes;
 
 	public static void main(String[] args) {
-		
-		AppTest App = new AppTest();
-		
-		try {
-			
-			App.setUp();
+		// Create a new chrome web driver
+		WebDriver webDriver = new ChromeDriver();
 
+		// Create a runner with concurrency of 5
+		VisualGridRunner runner = new VisualGridRunner(5);
+
+		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
+		Eyes eyes = new Eyes(runner);
+
+		setUp(eyes);
+
+		try {
 			// ⭐️ Note to see visual bugs, run the test using the above URL for the 1st run.
 			// but then change the above URL to https://demo.applitools.com/index_v2.html
 			// (for the 2nd run)
-			App.ultraFastTest();
+			ultraFastTest(webDriver, eyes);
+
+		} finally {
+			// Close the browser
+			webDriver.quit();
 
 			// Wait and collect all test results ,
 			// we pass false to this method to suppress the exception that is thrown if we
 			// find visual differences
-			TestResultsSummary allTestResults = App.runner.getAllTestResults(false);
+			TestResultsSummary allTestResults = runner.getAllTestResults(false);
 			System.out.println(allTestResults);
-		
-		} finally {
-			// Close the browser
-			App.webDriver.quit();
 		}
 
 	}
 
-	public void setUp() {
-		// Create a new chrome web driver
-		webDriver = new ChromeDriver();
-
-		// Create a runner with concurrency of 5
-		runner = new VisualGridRunner(5);
+	public static void setUp(Eyes eyes) {
 
 		// Initialize eyes Configuration
-		config = new Configuration();
+		Configuration config = new Configuration();
 
 		// Set the Applitools API KEY here from environment variables.
 		config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
@@ -79,33 +75,36 @@ public class AppTest {
 		config.addDeviceEmulation(DeviceName.iPhone_X, ScreenOrientation.PORTRAIT);
 		config.addDeviceEmulation(DeviceName.Pixel_2, ScreenOrientation.PORTRAIT);
 
-		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
-		eyes = new Eyes(runner);
-
 		// Set the configuration object to eyes
 		eyes.setConfiguration(config);
 
 	}
 
-	public void ultraFastTest() {
+	public static void ultraFastTest(WebDriver webDriver, Eyes eyes) {
 
-		// Navigate to the url we want to test
-		webDriver.get("https://demo.applitools.com");
+		try {
 
-		// Call Open on eyes to initialize a test session
-		eyes.open(webDriver, "Demo app", "Java VisualGrid demo", new RectangleSize(800, 600));
+			// Navigate to the url we want to test
+			webDriver.get("https://demo.applitools.com");
 
-		// check the login page with fluent api, see more info here
-		// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
-		eyes.check(Target.window().fully().withName("Login page"));
+			// Call Open on eyes to initialize a test session
+			eyes.open(webDriver, "Demo app", "Java VisualGrid demo", new RectangleSize(800, 600));
 
-		webDriver.findElement(By.id("log-in")).click();
+			// check the login page with fluent api, see more info here
+			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
+			eyes.check(Target.window().fully().withName("Login page"));
 
-		// Check the app page
-		eyes.check(Target.window().fully().withName("App page"));
+			webDriver.findElement(By.id("log-in")).click();
 
-		// Call Close on eyes to let the server know it should display the results
-		eyes.closeAsync();
+			// Check the app page
+			eyes.check(Target.window().fully().withName("App page"));
+
+			// Call Close on eyes to let the server know it should display the results
+			eyes.closeAsync();
+			
+		} catch (Exception e) {
+			eyes.abortAsync();
+		}
 
 	}
 
