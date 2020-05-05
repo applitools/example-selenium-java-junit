@@ -41,14 +41,7 @@ public class AppTest {
 			ultraFastTest(webDriver, eyes);
 
 		} finally {
-			// Close the browser
-			webDriver.quit();
-
-			// Wait and collect all test results ,
-			// we pass false to this method to suppress the exception that is thrown if we
-			// find visual differences
-			TestResultsSummary allTestResults = runner.getAllTestResults(false);
-			System.out.println(allTestResults);
+			tearDown(webDriver, runner);
 		}
 
 	}
@@ -106,6 +99,17 @@ public class AppTest {
 			eyes.abortAsync();
 		}
 
+	}
+	
+	private static void tearDown(WebDriver webDriver, VisualGridRunner runner) {
+		// Close the browser
+		webDriver.quit();
+
+		// Wait and collect all test results ,
+		// we pass false to this method to suppress the exception that is thrown if we
+		// find visual differences
+		TestResultsSummary allTestResults = runner.getAllTestResults(false);
+		System.out.println(allTestResults);
 	}
 
 }
