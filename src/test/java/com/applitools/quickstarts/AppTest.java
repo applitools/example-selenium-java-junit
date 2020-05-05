@@ -21,33 +21,38 @@ import org.openqa.selenium.chrome.ChromeDriver;
  * Unit test for simple App.
  */
 public class AppTest {
-	public static WebDriver webDriver;
-	public static VisualGridRunner runner;
-	public static Configuration config;
-	public static Eyes eyes;
+	public WebDriver webDriver;
+	public VisualGridRunner runner;
+	public Configuration config;
+	public Eyes eyes;
 
 	public static void main(String[] args) {
+		
+		AppTest App = new AppTest();
+		
 		try {
-			setUp();
+			
+			App.setUp();
 
 			// ⭐️ Note to see visual bugs, run the test using the above URL for the 1st run.
 			// but then change the above URL to https://demo.applitools.com/index_v2.html
 			// (for the 2nd run)
-			ultraFastTest();
+			App.ultraFastTest();
 
 			// Wait and collect all test results ,
 			// we pass false to this method to suppress the exception that is thrown if we
 			// find visual differences
-			TestResultsSummary allTestResults = runner.getAllTestResults(false);
+			TestResultsSummary allTestResults = App.runner.getAllTestResults(false);
 			System.out.println(allTestResults);
+		
 		} finally {
 			// Close the browser
-			webDriver.quit();
+			App.webDriver.quit();
 		}
 
 	}
 
-	public static void setUp() {
+	public void setUp() {
 		// Create a new chrome web driver
 		webDriver = new ChromeDriver();
 
@@ -82,7 +87,7 @@ public class AppTest {
 
 	}
 
-	public static void ultraFastTest() {
+	public void ultraFastTest() {
 
 		// Navigate to the url we want to test
 		webDriver.get("https://demo.applitools.com");
