@@ -10,9 +10,6 @@ import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.eyes.visualgrid.model.DeviceName;
 import com.applitools.eyes.visualgrid.model.ScreenOrientation;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
-
-import java.awt.Rectangle;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,8 +23,8 @@ public class AppTest {
 		// Create a new chrome web driver
 		WebDriver webDriver = new ChromeDriver();
 
-		// Create a runner with concurrency of 5
-		VisualGridRunner runner = new VisualGridRunner(5);
+		// Create a runner with concurrency of 1
+		VisualGridRunner runner = new VisualGridRunner(1);
 
 		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
 		Eyes eyes = new Eyes(runner);
@@ -51,8 +48,8 @@ public class AppTest {
 		// Initialize eyes Configuration
 		Configuration config = new Configuration();
 
-		// Set the Applitools API KEY here from environment variables.
-		config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
+		// You can get your api key from the Applitools dashboard
+		config.setApiKey("APPLITOOLS_API_KEY");
 
 		// create a new batch info instance and set it to the configuration
 		config.setBatch(new BatchInfo("Ultrafast Batch"));
