@@ -78,7 +78,7 @@ public class AppTest {
 			webDriver.get("https://demo.applitools.com");
 
 			// Call Open on eyes to initialize a test session
-			eyes.open(webDriver, "Demo app", "Java VisualGrid demo", new RectangleSize(800, 600));
+			eyes.open(webDriver, "Demo app", "Java Ultrafast demo", new RectangleSize(800, 600));
 
 			// check the login page with fluent api, see more info here
 			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
@@ -102,7 +102,6 @@ public class AppTest {
 		// Close the browser
 		webDriver.quit();
 
-		// Wait and collect all test results ,
 		// we pass false to this method to suppress the exception that is thrown if we
 		// find visual differences
 		TestResultsSummary allTestResults = runner.getAllTestResults(false);
