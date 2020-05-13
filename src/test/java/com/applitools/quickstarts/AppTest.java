@@ -13,38 +13,74 @@ import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterMethod;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest {
 
-	public static void main(String[] args) {
-		// Create a new chrome web driver
-		WebDriver webDriver = new ChromeDriver();
+	private WebDriver webDriver;
+	private VisualGridRunner runner;
+	private Eyes eyes;
 
-		// Create a runner with concurrency of 1
-		VisualGridRunner runner = new VisualGridRunner(1);
+	@Test
+	public void ultraFastTest() {
+		// ⭐️ Note to see visual bugs, run the test using the above URL for the 1st run.
+		// but then change the above URL to https://demo.applitools.com/index_v2.html
+		// (for the 2nd run)
+		// Navigate to the url we want to test
+		webDriver.get("https://demo.applitools.com");
 
-		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
-		Eyes eyes = new Eyes(runner);
+		// Call Open on eyes to initialize a test session
+		eyes.open(webDriver, "Demo App", "Ultrafast grid demo");//, new RectangleSize(800, 600));
 
-		setUp(eyes);
+		// check the login page with fluent api, see more info here
+		// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
+		eyes.check(Target.window().fully().withName("Login page"));
 
-		try {
-			// ⭐️ Note to see visual bugs, run the test using the above URL for the 1st run.
-			// but then change the above URL to https://demo.applitools.com/index_v2.html
-			// (for the 2nd run)
-			ultraFastTest(webDriver, eyes);
+		webDriver.findElement(By.id("log-in")).click();
 
-		} finally {
-			tearDown(webDriver, runner);
-		}
+		// Check the app page
+		eyes.check(Target.window().fully().withName("App page"));
 
+		// Call Close on eyes to let the server know it should display the results
+		eyes.closeAsync();
 	}
 
-	public static void setUp(Eyes eyes) {
+	@BeforeMethod
+	public void beforeEach () {
+		// Create a new chrome web driver
+		webDriver = new ChromeDriver();
 
+		// Create a runner with concurrency of 1
+		runner = new VisualGridRunner(1);
+
+		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
+		eyes = new Eyes(runner);
+
+		setUp();
+	}
+	
+	@AfterMethod
+	public void after() {
+
+		// Close the browser
+		webDriver.quit();
+
+		// we pass false to this method to suppress the exception that is thrown if we
+		// find visual differences
+		TestResultsSummary allTestResults = runner.getAllTestResults(false);
+		// Print results
+		System.out.println(allTestResults);
+
+		// If the test was aborted before eyes.close was called, ends the test as aborted.
+		eyes.abortIfNotClosed();
+	}
+
+	private void setUp() {
 		// Initialize eyes Configuration
 		Configuration config = new Configuration();
 
@@ -67,45 +103,5 @@ public class AppTest {
 
 		// Set the configuration object to eyes
 		eyes.setConfiguration(config);
-
 	}
-
-	public static void ultraFastTest(WebDriver webDriver, Eyes eyes) {
-
-		try {
-
-			// Navigate to the url we want to test
-			webDriver.get("https://demo.applitools.com");
-
-			// Call Open on eyes to initialize a test session
-			eyes.open(webDriver, "Demo App", "Ultrafast grid demo", new RectangleSize(800, 600));
-
-			// check the login page with fluent api, see more info here
-			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
-			eyes.check(Target.window().fully().withName("Login page"));
-
-			webDriver.findElement(By.id("log-in")).click();
-
-			// Check the app page
-			eyes.check(Target.window().fully().withName("App page"));
-
-			// Call Close on eyes to let the server know it should display the results
-			eyes.closeAsync();
-			
-		} catch (Exception e) {
-			eyes.abortAsync();
-		}
-
-	}
-	
-	private static void tearDown(WebDriver webDriver, VisualGridRunner runner) {
-		// Close the browser
-		webDriver.quit();
-
-		// we pass false to this method to suppress the exception that is thrown if we
-		// find visual differences
-		TestResultsSummary allTestResults = runner.getAllTestResults(false);
-		System.out.println(allTestResults);
-	}
-
 }

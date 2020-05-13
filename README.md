@@ -17,6 +17,6 @@
 
 2. Import the project as a *Maven* project in Eclipse or IntelliJ.
 3. Set your API key in the _APPLITOOLS_API_KEY_ env variable. Get an API key by logging into Applitools > Person Icon > My API Key
-4. Click the 'Run' button in Eclipse/IntelliJ
+4. Run 'mvn -Dtest=AppTest test' or click the 'Run' button in Eclipse/IntelliJ
 
 Read more here: https://www.applitools.com/tutorials/selenium-java.html
