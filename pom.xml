@@ -9,6 +9,22 @@
 	<name>Java-tutorial</name>
 	<url>http://maven.apache.org</url>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
 	<dependencies>
 		<!-- This is the Applitools Selenium Java SDK -->
 		<dependency>
@@ -16,5 +32,12 @@
 		 <artifactId>eyes-selenium-java3</artifactId>
 		 <version>RELEASE</version>
 		</dependency>
+		<dependency>
+	            <groupId>org.junit.jupiter</groupId>
+	            <artifactId>junit-jupiter-engine</artifactId>
+	            <version>5.6.2</version>
+	            <scope>test</scope>
+	        </dependency>
+
 	</dependencies>
 </project>

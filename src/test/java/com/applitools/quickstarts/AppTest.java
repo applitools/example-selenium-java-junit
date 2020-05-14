@@ -13,13 +13,15 @@ import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest {
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		// Create a new chrome web driver
 		WebDriver webDriver = new ChromeDriver();
 
@@ -72,29 +74,23 @@ public class AppTest {
 
 	public static void ultraFastTest(WebDriver webDriver, Eyes eyes) {
 
-		try {
+		// Navigate to the url we want to test
+		webDriver.get("https://demo.applitools.com");
 
-			// Navigate to the url we want to test
-			webDriver.get("https://demo.applitools.com");
+		// Call Open on eyes to initialize a test session
+		eyes.open(webDriver, "Demo App", "Ultrafast grid demo", new RectangleSize(800, 600));
 
-			// Call Open on eyes to initialize a test session
-			eyes.open(webDriver, "Demo App", "Ultrafast grid demo", new RectangleSize(800, 600));
+		// check the login page with fluent api, see more info here
+		// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
+		eyes.check(Target.window().fully().withName("Login page"));
 
-			// check the login page with fluent api, see more info here
-			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
-			eyes.check(Target.window().fully().withName("Login page"));
+		webDriver.findElement(By.id("log-in")).click();
 
-			webDriver.findElement(By.id("log-in")).click();
+		// Check the app page
+		eyes.check(Target.window().fully().withName("App page"));
 
-			// Check the app page
-			eyes.check(Target.window().fully().withName("App page"));
-
-			// Call Close on eyes to let the server know it should display the results
-			eyes.closeAsync();
-			
-		} catch (Exception e) {
-			eyes.abortAsync();
-		}
+		// Call Close on eyes to let the server know it should display the results
+		eyes.closeAsync();
 
 	}
 	
