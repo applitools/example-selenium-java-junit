@@ -13,15 +13,13 @@ import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.junit.jupiter.api.Test;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest {
 
-	@Test
-	public void test() {
+	public static void main(String[] args) {
 		// Create a new chrome web driver
 		WebDriver webDriver = new ChromeDriver();
 
@@ -74,26 +72,32 @@ public class AppTest {
 
 	public static void ultraFastTest(WebDriver webDriver, Eyes eyes) {
 
-		// Navigate to the url we want to test
-		webDriver.get("https://demo.applitools.com");
+		try {
 
-		// Call Open on eyes to initialize a test session
-		eyes.open(webDriver, "Demo App", "Ultrafast grid demo", new RectangleSize(800, 600));
+			// Navigate to the url we want to test
+			webDriver.get("https://demo.applitools.com");
 
-		// check the login page with fluent api, see more info here
-		// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
-		eyes.check(Target.window().fully().withName("Login page"));
+			// Call Open on eyes to initialize a test session
+			eyes.open(webDriver, "Demo App", "Ultrafast grid demo", new RectangleSize(800, 600));
 
-		webDriver.findElement(By.id("log-in")).click();
+			// check the login page with fluent api, see more info here
+			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
+			eyes.check(Target.window().fully().withName("Login page"));
 
-		// Check the app page
-		eyes.check(Target.window().fully().withName("App page"));
+			webDriver.findElement(By.id("log-in")).click();
 
-		// Call Close on eyes to let the server know it should display the results
-		eyes.closeAsync();
+			// Check the app page
+			eyes.check(Target.window().fully().withName("App page"));
+
+			// Call Close on eyes to let the server know it should display the results
+			eyes.closeAsync();
+
+		} catch (Exception e) {
+			eyes.abortAsync();
+		}
 
 	}
-	
+
 	private static void tearDown(WebDriver webDriver, VisualGridRunner runner) {
 		// Close the browser
 		webDriver.quit();
