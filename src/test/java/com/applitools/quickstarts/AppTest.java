@@ -92,7 +92,7 @@ public class AppTest {
 			// Call Close on eyes to let the server know it should display the results
 			eyes.closeAsync();
 
-		} catch (Exception e) {
+		} finally  {
 			eyes.abortAsync();
 		}
 
