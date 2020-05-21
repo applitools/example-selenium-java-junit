@@ -30,8 +30,10 @@
    * [Install IntelliJ IDEA](https://www.jetbrains.com/idea/download/)
 
      6.1 Set Project SDK to your JDK (installed in Step 1)  in Intellij - File > Project Structure > Project.
-     
-     
+
+7. Restart your machine to implement updated  environment variables (need for some OS).
+
+   
 
 # Steps to run this example
 
