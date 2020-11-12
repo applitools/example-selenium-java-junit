@@ -104,7 +104,7 @@ public class AppTest {
 
 		// we pass false to this method to suppress the exception that is thrown if we
 		// find visual differences
-		TestResultsSummary allTestResults = runner.getAllTestResults(false);
+		TestResultsSummary allTestResults = runner.getAllTestResults(true);
 		System.out.println(allTestResults);
 	}
 
