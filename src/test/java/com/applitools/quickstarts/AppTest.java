@@ -9,6 +9,7 @@ import com.applitools.eyes.selenium.Eyes;
 import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.eyes.visualgrid.model.DeviceName;
 import com.applitools.eyes.visualgrid.model.ScreenOrientation;
+import com.applitools.eyes.visualgrid.services.RunnerOptions;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,8 @@ public class AppTest {
 		WebDriver webDriver = new ChromeDriver();
 
 		// Create a runner with concurrency of 1
-		VisualGridRunner runner = new VisualGridRunner(1);
+		RunnerOptions runnerOptions = new RunnerOptions().testConcurrency(1);
+		VisualGridRunner runner = new VisualGridRunner(runnerOptions);
 
 		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
 		Eyes eyes = new Eyes(runner);
@@ -36,7 +38,6 @@ public class AppTest {
 			// but then change the above URL to https://demo.applitools.com/index_v2.html
 			// (for the 2nd run)
 			ultraFastTest(webDriver, eyes);
-
 		} finally {
 			tearDown(webDriver, runner);
 		}
