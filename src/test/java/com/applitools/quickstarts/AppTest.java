@@ -104,9 +104,8 @@ public class AppTest {
 		// Close the browser
 		webDriver.quit();
 
-		// we pass false to this method to suppress the exception that is thrown if we
 		// find visual differences
-		TestResultsSummary allTestResults = runner.getAllTestResults(false);
+		TestResultsSummary allTestResults = runner.getAllTestResults(true);
 		System.out.println(allTestResults);
 	}
 
