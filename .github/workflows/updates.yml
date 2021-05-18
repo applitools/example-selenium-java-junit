@@ -1,10 +1,9 @@
-name: CI
+name: Updates
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
 
 jobs:
   test:
@@ -26,4 +25,4 @@ jobs:
       - uses: mikeal/publish-to-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: 'master'
+          BRANCH_NAME: 'test_CI'
