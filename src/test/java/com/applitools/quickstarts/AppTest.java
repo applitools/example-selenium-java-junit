@@ -13,6 +13,7 @@ import com.applitools.eyes.visualgrid.services.VisualGridRunner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  * Unit test for simple App.
@@ -21,7 +22,8 @@ public class AppTest {
 
 	public static void main(String[] args) {
 		// Create a new chrome web driver
-		WebDriver webDriver = new ChromeDriver();
+		boolean CI_TEST = Boolean.getBoolean("ci_test");
+		WebDriver webDriver = new ChromeDriver(new ChromeOptions().setHeadless(CI_TEST));
 
 		// Create a runner with concurrency of 1
 		VisualGridRunner runner = new VisualGridRunner(1);
@@ -49,7 +51,7 @@ public class AppTest {
 		Configuration config = new Configuration();
 
 		// You can get your api key from the Applitools dashboard
-		config.setApiKey("APPLITOOLS_API_KEY");
+		config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
 
 		// create a new batch info instance and set it to the configuration
 		config.setBatch(new BatchInfo("Ultrafast Batch"));
@@ -102,9 +104,8 @@ public class AppTest {
 		// Close the browser
 		webDriver.quit();
 
-		// we pass false to this method to suppress the exception that is thrown if we
 		// find visual differences
-		TestResultsSummary allTestResults = runner.getAllTestResults(false);
+		TestResultsSummary allTestResults = runner.getAllTestResults(true);
 		System.out.println(allTestResults);
 	}
 

@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use java ${{ matrix.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: 'adopt'
+
+      - run: mvn install versions:use-latest-releases exec:java -Dexec.mainClass="com.applitools.quickstarts.AppTest"  -Dexec.classpathScope=test -Dmaven.compiler.source="1.7" -Dmaven.compiler.target="1.7" -Dci_test=true
+        env:
+          APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
+
+      - uses: mikeal/publish-to-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: 'master'
