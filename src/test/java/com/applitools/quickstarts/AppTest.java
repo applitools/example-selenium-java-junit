@@ -22,11 +22,10 @@ public class AppTest {
 
 	public static void main(String[] args) {
 		// Create a new chrome web driver
-		boolean CI_TEST = Boolean.getBoolean("ci_test");
-		WebDriver webDriver = new ChromeDriver(new ChromeOptions().setHeadless(CI_TEST));
+		WebDriver webDriver = new ChromeDriver(new ChromeOptions().setHeadless(getCI()));
 
 		// Create a runner with concurrency of 1
-		VisualGridRunner runner = new VisualGridRunner(1);
+		VisualGridRunner runner = new VisualGridRunner(10);
 
 		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
 		Eyes eyes = new Eyes(runner);
@@ -43,6 +42,11 @@ public class AppTest {
 			tearDown(webDriver, runner);
 		}
 
+	}
+
+	public static boolean getCI() {
+		String env = System.getenv("CI");
+		return Boolean.parseBoolean(env);
 	}
 
 	public static void setUp(Eyes eyes) {
