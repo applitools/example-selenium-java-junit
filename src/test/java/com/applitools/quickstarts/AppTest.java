@@ -58,7 +58,7 @@ public class AppTest {
 		config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
 
 		// create a new batch info instance and set it to the configuration
-		config.setBatch(new BatchInfo("Ultrafast Batch"));
+		config.setBatch(new BatchInfo("Demo Batch - Selenium for Java - Ultrafast"));
 
 		// Add browsers with different viewports
 		config.addBrowser(800, 600, BrowserType.CHROME);
@@ -84,7 +84,7 @@ public class AppTest {
 			webDriver.get("https://demo.applitools.com");
 
 			// Call Open on eyes to initialize a test session
-			eyes.open(webDriver, "Demo App - java", "Ultrafast grid demo", new RectangleSize(800, 600));
+			eyes.open(webDriver, "Demo App - Selenium for Java - Ultrafast", "Smoke Test - Selenium for Java - Ultrafast", new RectangleSize(800, 600));
 
 			// check the login page with fluent api, see more info here
 			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
