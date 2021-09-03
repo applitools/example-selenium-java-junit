@@ -10,6 +10,7 @@ import com.applitools.eyes.selenium.fluent.Target;
 import com.applitools.eyes.visualgrid.model.DeviceName;
 import com.applitools.eyes.visualgrid.model.ScreenOrientation;
 import com.applitools.eyes.visualgrid.services.VisualGridRunner;
+import com.applitools.eyes.visualgrid.services.RunnerOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,8 +24,8 @@ public class AppTest {
 		// Create a new chrome web driver
 		WebDriver webDriver = new ChromeDriver();
 
-		// Create a runner with concurrency of 1
-		VisualGridRunner runner = new VisualGridRunner(1);
+		// Create a runner with concurrency of 5
+		VisualGridRunner runner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
 
 		// Create Eyes object with the runner, meaning it'll be a Visual Grid eyes.
 		Eyes eyes = new Eyes(runner);
@@ -46,7 +47,7 @@ public class AppTest {
 	public static void setUp(Eyes eyes) {
 
 		// Initialize eyes Configuration
-		Configuration config = new Configuration();
+		Configuration config = eyes.getConfiguration();
 
 		// You can get your api key from the Applitools dashboard
 		config.setApiKey("APPLITOOLS_API_KEY");
