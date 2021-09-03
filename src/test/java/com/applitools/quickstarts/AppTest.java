@@ -14,6 +14,7 @@ import com.applitools.eyes.visualgrid.services.RunnerOptions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  * Unit test for simple App.
@@ -22,7 +23,7 @@ public class AppTest {
 
 	public static void main(String[] args) {
 		// Create a new chrome web driver
-		WebDriver webDriver = new ChromeDriver();
+		WebDriver webDriver = new ChromeDriver(new ChromeOptions().setHeadless(getCI()));
 
 		// Create a runner with concurrency of 5
 		VisualGridRunner runner = new VisualGridRunner(new RunnerOptions().testConcurrency(5));
@@ -44,16 +45,21 @@ public class AppTest {
 
 	}
 
+	public static boolean getCI() {
+		String env = System.getenv("CI");
+		return Boolean.parseBoolean(env);
+	}
+
 	public static void setUp(Eyes eyes) {
 
 		// Initialize eyes Configuration
 		Configuration config = eyes.getConfiguration();
 
 		// You can get your api key from the Applitools dashboard
-		config.setApiKey("APPLITOOLS_API_KEY");
+		config.setApiKey(System.getenv("APPLITOOLS_API_KEY"));
 
 		// create a new batch info instance and set it to the configuration
-		config.setBatch(new BatchInfo("Ultrafast Batch"));
+		config.setBatch(new BatchInfo("Demo Batch - Selenium for Java - Ultrafast"));
 
 		// Add browsers with different viewports
 		config.addBrowser(800, 600, BrowserType.CHROME);
@@ -79,7 +85,7 @@ public class AppTest {
 			webDriver.get("https://demo.applitools.com");
 
 			// Call Open on eyes to initialize a test session
-			eyes.open(webDriver, "Demo App - java", "Ultrafast grid demo", new RectangleSize(800, 600));
+			eyes.open(webDriver, "Demo App - Selenium for Java - Ultrafast", "Smoke Test - Selenium for Java - Ultrafast", new RectangleSize(800, 600));
 
 			// check the login page with fluent api, see more info here
 			// https://applitools.com/docs/topics/sdk/the-eyes-sdk-check-fluent-api.html
@@ -103,9 +109,8 @@ public class AppTest {
 		// Close the browser
 		webDriver.quit();
 
-		// we pass false to this method to suppress the exception that is thrown if we
 		// find visual differences
-		TestResultsSummary allTestResults = runner.getAllTestResults(false);
+		TestResultsSummary allTestResults = runner.getAllTestResults(true);
 		System.out.println(allTestResults);
 	}
 
