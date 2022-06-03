@@ -20,10 +20,7 @@ jobs:
           java-version: 17
           distribution: 'adopt'
 
-      - name: Install dependencies
-        run: mvn compile
-
-      - name: Execute testsv
+      - name: Execute tests
         env:
           APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
           HEADLESS: true
