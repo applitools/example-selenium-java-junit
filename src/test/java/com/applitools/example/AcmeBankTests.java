@@ -18,7 +18,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 
 public class AcmeBankTests {
     // This JUnit test case class contains everything needed to run a full visual test against the ACME bank site.
