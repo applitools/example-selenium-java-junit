@@ -20,7 +20,7 @@ jobs:
           java-version: 17
           distribution: 'adopt'
 
-      - name: Run test
+      - name: Execute tests
         run: mvn test
         env:
           APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
