@@ -21,10 +21,10 @@ jobs:
           distribution: 'adopt'
 
       - name: Install dependencies
-        run: mvn install
+        run: mvn compile
 
-      - name: Execute tests
-        run: mvn test
+      - name: Execute testsv
         env:
           APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
           HEADLESS: true
+        run: mvn test
