@@ -1,4 +1,4 @@
-# Applitools Tutorial: Selenium Java JUnit with the Ultrafast Grid
+# Applitools Example: Selenium Java JUnit with the Ultrafast Grid
 
 This is the example project for the [Selenium Java JUnit tutorial](https://applitools.com/tutorials/selenium-java.html).
 It shows how to start automating visual tests
