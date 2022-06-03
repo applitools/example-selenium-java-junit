@@ -20,6 +20,9 @@ jobs:
           java-version: 17
           distribution: 'adopt'
 
+      - name: Install dependencies
+        run: mvn install
+
       - name: Execute tests
         run: mvn test
         env:
