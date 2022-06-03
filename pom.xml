@@ -1,13 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.applitools.quickstarts</groupId>
-	<artifactId>Java-UltraFastGrid-Tutorial</artifactId>
-	<packaging>jar</packaging>
-	<version>1.0</version>
-	<name>Java-tutorial</name>
-	<url>http://maven.apache.org</url>
+
+	<groupId>com.applitools.example</groupId>
+	<artifactId>example-selenium-java-junit-ultrafastgrid</artifactId>
+	<version>2.0</version>
 
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -15,11 +14,24 @@
 	</properties>
 
 	<dependencies>
-		<!-- This is the Applitools Selenium Java SDK -->
 		<dependency>
-		 <groupId>com.applitools</groupId>
-		 <artifactId>eyes-selenium-java3</artifactId>
-		 <version>3.209.0-beta</version>
+			<groupId>com.applitools</groupId>
+			<artifactId>eyes-selenium-java3</artifactId>
+			<version>3.213.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>4.2.1</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 </project>
