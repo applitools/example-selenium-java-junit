@@ -1,10 +1,11 @@
-name: CI
+name: Run all tests
 
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   test:
@@ -16,13 +17,11 @@ jobs:
       - name: Use java ${{ matrix.java-version }}
         uses: actions/setup-java@v2
         with:
-          java-version: 11
+          java-version: 17
           distribution: 'adopt'
 
-      - name: Install dependencies
-        run: mvn install
-
-      - name: Test code
-        run: mvn exec:java -Dexec.mainClass="com.applitools.quickstarts.AppTest"  -Dexec.classpathScope=test
+      - name: Execute tests
         env:
           APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
+          HEADLESS: true
+        run: mvn test
