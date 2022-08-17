@@ -61,7 +61,7 @@ public class AcmeBankTests {
         // Create a new batch for tests.
         // A batch is the collection of visual checkpoints for a test suite.
         // Batches are displayed in the dashboard, so use meaningful names.
-        batch = new BatchInfo("Applitools Example: Selenium Java JUnit with the Ultrafast Grid");
+        batch = new BatchInfo("Example: Selenium Java JUnit with the Ultrafast Grid");
 
         // Create a configuration for Applitools Eyes.
         config = new Configuration();
