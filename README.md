@@ -1,6 +1,6 @@
 # Applitools Example: Selenium Java JUnit with the Ultrafast Grid
 
-This is the example project for the [Selenium Java JUnit tutorial](https://applitools.com/tutorials/selenium-java.html).
+This is the example project for the [Selenium Java JUnit tutorial](https://applitools.com/tutorials/quickstart/web/selenium/java/junit).
 It shows how to start automating visual tests
 with [Applitools Eyes](https://applitools.com/platform/eyes/)
 and the [Ultrafast Grid](https://applitools.com/platform/ultrafast-grid/)
@@ -36,4 +36,4 @@ mvn test
 ```
 
 **For full instructions on running this project, take our
-[Selenium Java JUnit tutorial](https://applitools.com/tutorials/selenium-java.html)!**
+[Selenium Java JUnit tutorial](https://applitools.com/tutorials/quickstart/web/selenium/java/junit)!**
