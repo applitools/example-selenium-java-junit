@@ -44,8 +44,6 @@ public class AcmeBankTests {
         // If you have more than one test class, then you should abstract this configuration to avoid duplication.
 
         // Read the Applitools API key from an environment variable.
-        // To find your Applitools API key:
-        // https://applitools.com/tutorials/getting-started/setting-up-your-environment.html
         applitoolsApiKey = System.getenv("APPLITOOLS_API_KEY");
 
         // Read the headless mode setting from an environment variable.
