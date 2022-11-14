@@ -27,19 +27,19 @@
 		<dependency>
 			<groupId>com.applitools</groupId>
 			<artifactId>eyes-selenium-java5</artifactId>
-			<version>5.15.0</version>
+			<version>5.35.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
-			<version>5.9.0</version>
+			<version>5.9.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
-			<version>4.4.0</version>
+			<version>4.6.0</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
