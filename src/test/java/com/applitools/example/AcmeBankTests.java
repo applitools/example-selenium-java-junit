@@ -142,11 +142,11 @@ public class AcmeBankTests {
     @AfterEach
     public void cleanUpTest() {
 
-        // Quit the WebDriver instance.
-        driver.quit();
-
         // Close Eyes to tell the server it should display the results.
         eyes.closeAsync();
+
+        // Quit the WebDriver instance.
+        driver.quit();
 
         // Warning: `eyes.closeAsync()` will NOT wait for visual checkpoints to complete.
         // You will need to check the Eyes Test Manager for visual results per checkpoint.
