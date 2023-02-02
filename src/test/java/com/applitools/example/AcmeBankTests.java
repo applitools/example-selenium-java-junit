@@ -114,7 +114,8 @@ public class AcmeBankTests {
                 driver,
                 
                 // The name of the application under test.
-                // All tests for the same app should share the same app name. 
+                // All tests for the same app should share the same app name.
+                // Set this name wisely: Applitools features rely on a shared app name across tests.
                 "ACME Bank Web App",
                 
                 // The name of the test case for the given application.
