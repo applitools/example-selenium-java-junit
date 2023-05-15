@@ -59,7 +59,7 @@ public class AcmeBankTests {
         // Read the headless mode setting from an environment variable.
         // Use headless mode for Continuous Integration (CI) execution.
         // Use headed mode for local development.
-        headless = Boolean.parseBoolean(System.getenv().getOrDefault("HEADLESS", "true"));
+        headless = Boolean.parseBoolean(System.getenv().getOrDefault("HEADLESS", "false"));
 
         if (USE_ULTRAFAST_GRID) {
             // Create the runner for the Ultrafast Grid.
